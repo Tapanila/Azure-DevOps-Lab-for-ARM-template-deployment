@@ -17,44 +17,31 @@ In this lab, you will learn how to configure Azure ARM Template deployment using
 
 - This lab requires you to complete task 1 from the <a href="https://www.azuredevopslabs.com/labs/azuredevops/prereq/">prerequisite</a> instructions.
 
-<a name="Exercise1"></a>
-## Exercise 1: Create new repository for ARM template ##
-
-1. Create new repository
-
-1. Create azuredeploy.json file to the repository and copy content from [here](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-aci-wordpress/azuredeploy.json) to the file
-
-1. Commit changes
-
 <a name="Exercise2"></a>
-## Exercise 2: Introduction to Azure DevOps Build ##
+## Exercise 1: Introduction to Azure DevOps Build ##
 
 <a name="Ex1Task1"></a>
-### Task 1: Creating a basic build pipeline from a template ###
+### Task 1: Creating a basic release pipeline from a template ###
 
 1. Navigate to your team project on Azure DevOps.
 
-1. Navigate to **Pipelines \| Builds**.
+1. Navigate to **Pipelines \| Releases**.
 
     ![](images/000.png)
 
-1. Select **New \| New build pipeline** to create a new build pipeline.
+1. Select **New pipeline** to create a new release pipeline.
 
     ![](images/001.png)
 
-1. The default option for build pipelines involves using YAML to define the process. If you are interested in that, please check out that lab. For this lab, click **use the visual designer**.
+1. Click  **or start with an empty job**.
 
     ![](images/002.png)
 
-1. The first thing you'll need to do is to configure the source repository. Every major platform is available, but the default options are all we need here. This build will use the **master** branch of the repo you created earlier. Leave the defaults and click **Continue**.
+1. It will show you an view with stage information. Ignore that and click on **1 job, 0 task** on left side
 
     ![](images/003.png)
 
-1. Locate the **Empty Job** and click it. Note that there are many options that should cover all of our mainstream scenarios. For our purposes here, we'll just build the pipeline from scratch.
-
-    ![](images/004.png)
-
-1. Click the **+** sign on **Agent Job 1** bar
+1. Click the **+** sign on **Agent Job** bar
 
     ![](images/005.png)
 
@@ -76,38 +63,37 @@ In this lab, you will learn how to configure Azure ARM Template deployment using
     
 1. Select Location (Recommended **West Europe**)
 
-1. Choose Template location by clicking the **...*** on the right side
+1. Select template Location  **URL of the file**
+    
+    ![](images/009.png)
+
+1. Copy paste following url to the link **https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-aci-wordpress/azuredeploy.json**
 
     ![](images/010.png)
     
-1. View parameters that you can override by clicking **...*** on the right side. Add MySQL Password
+1. View parameters that you can override by clicking **...*** on the right side. Normally this would work but this time it won't since Github doesn't allow CORS requests. Click **+Add** and enter **mysqlPassword** on name and then what you want on value. Then click **OK**
 
     ![](images/011.png)
 
-1. Accept the default options by clicking **Save & queue**.
+1. Save your definition **Save**.
 
     ![](images/012.png)
-
-<a name="Ex1Task2"></a>
-### Task 2: Tracking and reviewing a build ###
-
-1. Click the link to the newly created build.
+    
+1. Create new release
 
     ![](images/013.png)
+    
+1. Keep defaults and click **Create**
 
-1. Depending on load, the build may need to wait in the queue for a moment.
+   ![](images/014.png)
+   
+1. Open your newly created **Release-1**
 
-    ![](images/014.png)
+   ![](images/015.png)
+   
+1. Wait and enjoy the nice animation
 
-1. Once the build begins, you'll be able to track the console output. If you want to review an earlier task, you can click to review its logs.
-
-    ![](images/015.png)
-
-1. The build should eventually succeed, which you can review in the **Summary** tab.
-
-    ![](images/016.png)
-
-1. Select the **Logs** tab to see each step and how long it took.
-
-    ![](images/017.png)
+   ![](images/016.png)
+   
+1. Clean up your deployment from Azure portal
 
